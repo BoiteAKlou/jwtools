@@ -20,14 +20,14 @@ def change_alg_to_none(token):
 #change alg RS256 to HS256 and sign with public key
 def change_alg_rs256_to_hs256(token,key):
     try:
-	public = open(key, 'r').read()
+        public = open(key, 'r').read()
         payload = jwt.decode(token, verify=False)
-	new_token = jwt.encode(payload, public, algorithm='HS256')
+        new_token = jwt.encode(payload, public, algorithm='HS256')
         print "\n[+] Signature algorithm successfuly changed to 'HS256'."
         print "[+] New token signed with public key: %s"%(new_token)
     except IOError:
-	print "\nError: Could not open file '%s'"%(key)
-	sys.exit(1)
+        print "\nError: Could not open file '%s'"%(key)
+        sys.exit(1)
     except jwt.exceptions.DecodeError:
         print "\nError: Could not decode token."
         sys.exit(1)
@@ -44,15 +44,15 @@ def init_parser():
 
 
     if args.action == "info":
-	show_decoded_token(args.token)
+        show_decoded_token(args.token)
     elif args.action == "to-none":
-	change_alg_to_none(args.token)
+        change_alg_to_none(args.token)
     elif args.action == "to-hs256":
-	if args.public:
+        if args.public:
             change_alg_rs256_to_hs256(args.token,args.public)
-	else:
-	    print "You must specify a public key with -p or --public."
-	    exit(1)
+        else:
+            print "You must specify a public key with -p or --public."
+            exit(1)
 
 if __name__ == "__main__":
     init_parser()
