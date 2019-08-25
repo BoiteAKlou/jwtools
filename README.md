@@ -18,7 +18,7 @@ This script relies on **pyjwt version 0.4.3** module. You can install it with th
 $ pip install pyjwt==0.4.3
 ```
 
-### Alternative
+### Alternative
 
 If you want to use the latest version of pyjwt, you will have to patch the library code. Developpers have added a "security mitigation" which prevents the user from signing a JWT with a public key. In order to bypass this restriction, you can replace the code of **prepare_key()** in ~/.local/lib/python2.7/site-packages/jwt/algorithms.py with the following:
 
@@ -30,7 +30,7 @@ AFTER
 
 ![Modified prepare_key](./screens/modified_prepare_key.png)
 
-## Usage
+## Usage
 
 ```bash
 $ python jwtools.py -h
@@ -56,7 +56,7 @@ optional arguments:
 
 * info
 
-```
+```bash
 $ python jwtools.py eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb2xsb3ciOiJib2l0ZWFrbG91In0.G-N1qBVvkvmC_p6MQ-99LQBX1cR0t40ANvP3HrIOs5I info
 
 [+] Decoded token
@@ -66,7 +66,7 @@ $ python jwtools.py eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb2xsb3ciOiJib2l0ZWF
 
 * to-none
 
-```
+```bash
 $ python jwtools.py eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb2xsb3ciOiJib2l0ZWFrbG91In0.G-N1qBVvkvmC_p6MQ-99LQBX1cR0t40ANvP3HrIOs5I to-none
 
 [+] Signature algorithm successfuly changed to 'none'.
@@ -81,7 +81,7 @@ $ python jwtools.py eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJmb2xsb3ciOiJib2l0ZWFr
 
 * to-hs256
 
-```
+```bash
 $ python jwtools.py eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb2xsb3ciOiJib2l0ZWFrbG91In0.G-N1qBVvkvmC_p6MQ-99LQBX1cR0t40ANvP3HrIOs5I --public public.pem to-hs256
 
 [+] Signature algorithm successfuly changed to 'HS256'.
